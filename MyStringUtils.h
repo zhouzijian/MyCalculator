@@ -10,4 +10,7 @@
 
 @interface MyStringUtils : NSObject
 + (NSString *)getStringByString:(NSString *) oldString AndNum:(NSInteger) num;
++ (NSString *)getStringByString:(NSString *) oldString AndOption:(unichar) op;
+
++ (NSString *)calcComplexFormulaString:(NSString *)formula;
 @end

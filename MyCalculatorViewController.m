@@ -27,6 +27,10 @@
     self.btn7.tag = 7;
     self.btn8.tag = 8;
     self.btn9.tag = 9;
+    self.btnAdd.tag = '+';
+    self.btnDivision.tag = '/';
+    self.btnMultiplication.tag = '*';
+    self.btnSubtraction.tag = '-';
     self.text.text = @"0";
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -42,16 +46,33 @@
 }
 
 - (IBAction)clickClearBtn:(id)sender {
+    self.text.text = @"0";
 }
 
 - (IBAction)clickOptionBtn:(id)sender {
-    
+    if (self.text.text.length == 0) {
+
+    } else {
+        unichar lastChar = [self.text.text characterAtIndex:self.text.text.length - 1];
+        switch (lastChar) {
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+                break;
+            default:
+                self.text.text = [MyStringUtils getStringByString:self.text.text AndOption:[sender tag]];
+                break;
+        }
+    }
 }
 
 - (IBAction)clickEqualBtn:(id)sender {
+    self.text.text = [MyStringUtils calcComplexFormulaString:self.text.text];
 }
 
 - (IBAction)clickPointBtn:(id)sender {
+    
 }
 
 - (IBAction)click0Btn:(id)sender {
